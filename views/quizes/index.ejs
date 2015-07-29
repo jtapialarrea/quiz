@@ -1,0 +1,12 @@
+<table>
+  <thead>
+    <tr>
+      <th>Preguntas disponibles: <%= quizes.length %></th>
+    </tr>
+  </thead>
+  <tbody>
+<% var i; for (i=0; i < quizes.length; i++) { %>
+  <tr><td><a href="quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %></a></td></tr>
+<% } %>
+  </tbody>
+</table>
