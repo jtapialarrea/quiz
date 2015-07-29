@@ -1,7 +1,7 @@
 <table>
   <thead>
     <tr>
-      <th>Preguntas disponibles: <%= quizes.length %></th>
+      <th>Preguntas encontradas: <%= quizes.length %></th>
     </tr>
   </thead>
   <tbody>
@@ -10,3 +10,12 @@
 <% } %>
   </tbody>
 </table>
+<div>
+  <form method="get" action="/quizes">
+    <p>Localice las preguntas disponibles por texto:</p>
+    <p>
+      <input type="text" name="search" value="" />
+      <input type="submit" value="Buscar" />
+    </p>
+  </form>
+</div>
