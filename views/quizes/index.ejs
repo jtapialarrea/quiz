@@ -1,19 +1,26 @@
-<div>
-  <p><b>Preguntas encontradas: <%= quizes.length %></b></p>
+<div id="resultados">
+  <h1>Preguntas encontradas: <%= quizes.length %></h1>
+  <table>
   <% var i; for (i=0; i < quizes.length; i++) { %>
-    <p>
+    <tr>
+      <td>
       <a href="quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %></a>&nbsp;
-      <a href="quizes/<%= quizes[i].id %>/edit"><button>editar</button></a>
+      </td>
+      <td>
+      <a href="quizes/<%= quizes[i].id %>/edit"><button>Editar</button></a>
+      </td>
+      <td>
       <form method="post" action="quizes/<%= quizes[i].id %>?_method=delete">
         <button type="submit" onClick="return confirm('Borrar: <%= quizes[i].pregunta %>');">
-          borrar
+          Borrar
         </button>
       </form>
-    </p>
+      </td>
   <% } %>
+  </table>
 </div>
-<br/>
-<div>
+<p/>
+<div id="buscador">
   <form method="get" action="/quizes">
     <p>Localice las preguntas disponibles por texto:</p>
     <p>
