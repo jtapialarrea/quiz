@@ -1,5 +1,5 @@
 *                     { margin: 0; padding: 0; }
-body                  { font: 16px Georgia, serif; ; }
+body                  { font: 16px Georgia, serif; }
 
 #page-wrap            { margin: 2% auto; color: white; }
 #page-wrap > .main    { border: 1px solid #999; padding: 1%;
@@ -12,3 +12,30 @@ nav span              { margin: 0px 10px 0px 0px; }
 footer span           { margin: 0px 15px 0px 0px; }
 
 #ErrorMsgs            { color: #f61; font-size: smaler; }
+table                 { padding-bottom: 20px;
+                        padding-top: 20px;
+                        margin-left:auto;
+                        margin-right:auto;
+                      }
+
+input[type="text"], select {
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #d0d1d2;
+    border-radius: 3px;
+    display: inline-block;
+    height: 29px;
+    line-height: 140%;
+    width: 50%;
+}
+label {
+    display: inline-block;
+    padding-right: 15px;
+    text-align: right;
+    width: 32%;
+}
+#botonera, #buscador {
+    padding-top: 10px;
+}
+h1 {
+  padding-bottom: 10px;
+}
