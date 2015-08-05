@@ -1,7 +1,18 @@
-    <form method="get" action="/quizes/<%= quiz.id %>/answer">
-      <p>Pregunta: <%= quiz.pregunta %></p>
-      <p>
-        <input type="text" name="respuesta" placeholder="Responda aquí" value="" />
-        <input type="submit" value="Enviar" />
-      </p>
-    </form>
+<h1>Pregunta: <%= quiz.pregunta %></h1>
+<form method="get" action="/quizes/<%= quiz.id %>/answer">
+  <p>
+    <input type="text" name="respuesta" placeholder="Responda aquí" value="" />
+    <input type="submit" value="Enviar" />
+  </p>
+</form>
+
+<div id="botonera">
+  <a href="/quizes/<%= quiz.id %>/comments/new">
+    <button>Nuevo comentario</button>
+  </a>
+</div>
+
+<p><strong>Comentarios:</strong></p>
+<% for(index in quiz.Comments) { %>
+  <p>- <%= quiz.Comments[index].texto %></p>
+<% } %>

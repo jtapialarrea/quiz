@@ -1,6 +1,11 @@
 var express = require('express');
 var router = express.Router();
+
+//Controladres de la aplicación
 var quizController = require('../controllers/quiz_controller');
+var commentController = require('../controllers/comment_controller');
+
+//Variable para mantener el título de la aplicación
 var title = 'Quiz';
 
 /* GET home page. */
@@ -23,5 +28,8 @@ router.delete('/quizes/:quizId(\\d+)',     quizController.destroy);
 router.get('/author', function(req, res) {
   res.render('author', { errors: [] });
 });
+
+router.get('/quizes/:quizId(\\d+)/comments/new', commentController.new);
+router.post('/quizes/:quizId(\\d+)/comments', commentController.create);
 
 module.exports = router;

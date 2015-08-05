@@ -1,0 +1,8 @@
+<h1>Añadir comentario sobre: <%= quiz.pregunta %> </h1>
+<form method="post" action="/quizes/<%=quiz.id%>/comments/" >
+  <input type="text" id="comment" name="comment[texto]" value=""/>
+  <div id="botonera">
+    <a href="/quizes/<%=quiz.id%>"><button type="button">Cancelar</button></a>
+    <button type="submit">Enviar</button>
+  </div>
+</form>
