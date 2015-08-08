@@ -1,0 +1,6 @@
+mkdir certs
+cd certs
+openssl req -new -sha256 -key quiz-2015-key.pem -out quiz-2015-csr.pem
+openssl req -new -sha256 -key quiz-2015-key.pem -out quiz-2015-csr.pem -config 'C:\Program Files
+(x86)\GnuWin32\share\openssl.cnf'
+openssl x509 -req -in quiz-2015-csr.pem -signkey quiz-2015-key.pem -out quiz-2015-cert.pem
