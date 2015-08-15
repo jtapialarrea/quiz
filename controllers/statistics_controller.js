@@ -1,9 +1,4 @@
 var models = require('../models/models.js');
-var Promise = require('bluebird');
-
-function isGreaterZero(element) {
-  return element > 0;
-}
 
 //GET /quizes/statistics
 exports.index = function(req, res) {
@@ -15,35 +10,27 @@ exports.index = function(req, res) {
     sin_Comentarios: 0,
     con_Comentarios: 0
   };
-  //Almacena total de comentarios por cada pregunta
-  var comments = [];
 
-  models.Quiz.findAll()
+  models.Quiz.count()
   .then(
-    function(quizes) {
-      statistics.tot_preguntas = quizes.length;
-      //Se itera con cada pregunta para obtener el núm. de comentarios
-      quizes.forEach(function(item) {
-        var filter_comment = {};
-        filter_comment.where = ["QuizId = ?", item.id];
-        comments.push(
-          //Uso de Promise para asegurar la ejecución de todas las queries
-          Promise.all([
-            models.Comment.count(filter_comment)
-          ])
-        )
-      })
-      return Promise.all(comments);
+    function(count) {
+      statistics.tot_preguntas = count;
+      return models.Comment.count();
     })
   .then(
-    function(comments) {
-      statistics.tot_comentarios = comments.reduce(function(a, b) {
-        return parseInt(a) + parseInt(b)  ;
-      });
-      statistics.con_comentarios = comments.filter(isGreaterZero).length;
+    function(count) {
+      statistics.tot_comentarios = count;
+      return models.Quiz.count({
+        distinct: true,
+        include: [{ model: models.Comment, required: true }]
+      })
+    })
+  .then(
+    function(count) {
+      statistics.con_comentarios = count;
       statistics.sin_comentarios= statistics.tot_preguntas - statistics.con_comentarios;
-      if (statistics.tot_comentarios > 0) {
-        statistics.med_comentarios = (statistics.tot_preguntas / statistics.tot_comentarios).toFixed(2);
+        if (statistics.tot_comentarios > 0) {
+        statistics.med_comentarios = (statistics.tot_comentarios / statistics.tot_preguntas).toFixed(2);
       };
 
       res.render( 'statistics/index', { statistics: statistics, errors: [] } );
