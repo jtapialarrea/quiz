@@ -17,7 +17,9 @@ table                 { padding-bottom: 20px;
                         margin-left:auto;
                         margin-right:auto;
                       }
-
+td > .rigth {
+  align: right;
+}
 input[type="text"], input[type="password"], select {
     background: #fff none repeat scroll 0 0;
     border: 1px solid #d0d1d2;
