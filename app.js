@@ -15,6 +15,7 @@ var routes = require('./routes/index');
 var app = express();
 //Timeout de sesión configurada en variable de entorno
 var timeout = process.env.SESSION_TIMEOUT;
+console.log('>>>>>>>> Control de sesion: Timeout:' + timeout);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -44,6 +45,7 @@ app.use(function(req, res, next){
   if (req.session.user) { // Usuario logado
     //Tiempo de inactividad (timeout): 2 minutos
     var duracion = Date.now() - req.session.user.timestamp;
+    console.log('>>>>>>>> Control de sesion: Duracion sesion: ' + duracion + 'ms');
     if ( duracion > timeout ) {
       console.log('>>>>>>>> Control de sesion: Sesion caducada: ' + parseInt(duracion/1000) + ' sg');
       delete req.session.user;
