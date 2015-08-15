@@ -14,7 +14,7 @@ var routes = require('./routes/index');
 
 var app = express();
 //Timeout de sesión configurada en variable de entorno
-var timeout = process.env.SESSION_TIMEOUT;
+var timeout = process.env.SESSION_TIMEOUT || 120000;
 console.log('>>>>>>>> Control de sesion: Timeout:' + timeout);
 
 // view engine setup
